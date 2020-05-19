@@ -1,2 +1,2 @@
 require("./main.css")
-console.log("I am here")
+require('./index.html')
