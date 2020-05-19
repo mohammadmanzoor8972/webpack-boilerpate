@@ -29,11 +29,42 @@ module.exports = {
                      options: {name: "[name].html"}},
                     {loader: "extract-loader"},
                     {loader: "html-loader",  
-                    options: {
-                        // Disables attributes processing
-                        attributes: false,
-                      }}
+                    options:{attributes:{
+                        list: [ {
+                            tag: 'img',
+                            attribute: 'src',
+                            type: 'src',
+                          },
+                          {
+                            tag: 'img',
+                            attribute: 'srcset',
+                            type: 'srcset',
+                          },
+                          {
+                            tag: 'img',
+                            attribute: 'data-src',
+                            type: 'src',
+                          },
+                          {
+                            tag: 'img',
+                            attribute: 'data-srcset',
+                            type: 'srcset',
+                          }]
+                    }}}
                 ]
+            },
+            {
+                test:/\.(jpg|gif|png)$/i,
+                use:[
+                    {
+                        loader: "file-loader",
+                        options: {
+                            name: "images/[name].[ext]",
+                            attributes: false
+                        }
+                    }
+                ]
+
             }
         ]
     }
